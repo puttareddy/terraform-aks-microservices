@@ -6,17 +6,33 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">= 3.5.0"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.15.0"
+    }
   }
 }
 
 provider "azurerm" {
   skip_provider_registration = true
+
+  client_id     = var.appId
+  client_secret = var.password
+  tenant_id = var.tenantId
+  subscription_id = var.subscriptionId
   features {}
+}
+
+# Configure the Azure Active Directory Provider
+provider "azuread" {
+  client_id     = var.appId
+  client_secret = var.password
+  tenant_id = var.tenantId
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-${var.project_name}"
-  location = "West US"
+  location = "East US"
 }
 
 module registry {

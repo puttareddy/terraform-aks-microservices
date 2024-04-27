@@ -81,6 +81,11 @@ Verify installation
 istioctl verify-install
 ````
 
+Create istion namespace manually
+````sh
+kubectl create namespace istio-system
+````
+
 Install observability tools
 ````sh
 kubectl apply -f istio/monitoring

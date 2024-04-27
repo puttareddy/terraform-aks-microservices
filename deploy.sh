@@ -59,6 +59,9 @@ istioctl install -y
 # verificar instalação
 istioctl verify-install
 
+# create istio namespace
+kubectl create namespace istio-system
+
 # instalar monitoramento
 kubectl apply -f infra/istio/monitoring/01-prometheus.yaml
 kubectl apply -f infra/istio/monitoring/02-grafana.yaml
